@@ -65,3 +65,14 @@ header{
     color: white;
     font-size: larger;
 }
+.location-card{
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    height: 25px;
+    background-color: rgb(75, 197, 115);
+    border-radius: 3px;
+}
+.buttons{
+    right: 0;
+}
