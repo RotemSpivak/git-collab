@@ -54,6 +54,13 @@ body {
 
 }
 
-
+form {
+    display: flex;
+    justify-content: flex-start;
+}
+form .location-name{
+    padding: 8px;
+    border-radius: 8px;
+}
 
 

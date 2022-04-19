@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/headers.css">
     <link rel="stylesheet" href="css/map.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mq.css">
     <title>TravelTip</title>
 </head>
 <body>
@@ -45,14 +46,11 @@
                 <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
                 <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
                 <form onsubmit="getLocationName(event)">
-                    <input class="location-name" type="text" placeholder="Please enter location name">
+                    <input class="location-name" type="text" placeholder="Enter location name:">
                 </form>
             </div>
         </div>
     </div>
-  
-    <p>You are at: <span class="user-pos"></span></p>
-
     
     <script src="/js/lib/axios.js"></script>
     <script type="module" src="js/app.controller.js"></script>

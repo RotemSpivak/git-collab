@@ -22,6 +22,8 @@ function getLocs() {
 
 function saveLocation(location){
     locs.push(location)
+    document.querySelector('.location-title').innerHTML = `Location: ${location}`
+    document.querySelector('.p-title').innerHTML = `Weather in ${location}:`
     storageService.saveToStorage(STORAGE_KEY,locs)
     return location
 }

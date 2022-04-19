@@ -34,6 +34,7 @@ header{
     align-items: center;
     font-size: larger;
     margin-right: 40px;
+    border-radius: 8px;
 }
 .location-title{
     width: 700px;
@@ -48,6 +49,7 @@ header{
     font-size: larger;
     justify-content: center;
     align-items: center;
+    border-radius: 8px;
 }
 
 .search-location {
@@ -57,6 +59,7 @@ header{
     height: 38px;
     background-color: rgb(209, 209, 213);
     padding: 8px;
+    border-radius: 8px;
 }
 
 .btn-submit{
@@ -64,6 +67,7 @@ header{
     padding: 5px;
     color: white;
     font-size: larger;
+    border-radius: 8px;
 }
 .location-card{
     display: flex;
@@ -75,4 +79,9 @@ header{
 }
 .buttons{
     right: 0;
+    border-radius: 8px;
+}
+
+.map-btns button {
+    border-radius: 8px;
 }

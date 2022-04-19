@@ -54,7 +54,6 @@ function addMarker(loc) {
 function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
     gMap.panTo(laLatLng);
-    console.log('PANNING')
 }
 
 
@@ -73,6 +72,8 @@ function clickOnMap(){
         let id = getRandomId()
         const currLocation = {id,name:name,lat:ev.latLng.lat(),lng:ev.latLng.lng()}
         locService.saveLocation(currLocation)
+        document.querySelector('.location-title').innerHTML = `Location: ${name}`
+        document.querySelector('.p-title').innerHTML = `Weather in ${name}:`
     })
 }
 
