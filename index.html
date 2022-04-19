@@ -22,7 +22,7 @@
     </header>
     <div class="second-header">
         <h1 class="location-title">Location: Central Park, New York</h1>
-        <button class="copy-location-btn" onclick="onCopyLocation()">Copy Location</button>
+        <button class="copy-location-btn" onclick="onCopyLocation(event)">Copy Location</button>
     </div>
     <div class="weather-table-map-container">
         <div class="weather-table-container">
@@ -36,9 +36,7 @@
                 <p>Locations: <span class="locs"></span></p>
             </div>
         </div>
-        <form onsubmit="getLocationName(event)">
-            <input class="location-name" type="text" placeholder="Please enter location name">
-        </form>
+        
         <div class="map-container">
             <div class="map" id="map" style="width: 550px; height: 400px;"></div>
             <div class="map-btns">
@@ -46,10 +44,13 @@
                 <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
                 <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
                 <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
+                <form onsubmit="getLocationName(event)">
+                    <input class="location-name" type="text" placeholder="Please enter location name">
+                </form>
             </div>
         </div>
     </div>
-        
+  
     <p>You are at: <span class="user-pos"></span></p>
 
     

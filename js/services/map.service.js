@@ -8,15 +8,27 @@ export const mapService = {
     clickOnMap,
     getGCurrLocation,
     getRandomId,
+    renderMarkers
 }
 
 var gMap;
-
+var gMarkers
 
 function getGCurrLocation(){
     return gCurrLocation
 }
 
+function renderMarkers(){
+    locService.getLocs()
+    .then(locations => {
+        let latLng = locations.map(location =>{
+            return {lat:location.lat,
+                lng:location.lng}
+            })
+           latLng.forEach(position => addMarker(position))
+        }
+        )
+        }
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     return _connectGoogleApi()
@@ -45,8 +57,18 @@ function panTo(lat, lng) {
     console.log('PANNING')
 }
 
+
+
 function clickOnMap(){
+   
     gMap.addListener('click',(ev)=>{
+        let text = document.querySelector('.location-name')
+        console.log(text.value)
+        if(!text.value) return
+        renderMarkers()
+        addMarker(ev.latLng)
+        console.log(ev.latLng.lat())
+        console.log(ev.latLng.lng())
         let name = appController.getLocation()
         let id = getRandomId()
         const currLocation = {id,name:name,lat:ev.latLng.lat(),lng:ev.latLng.lng()}
