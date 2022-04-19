@@ -15,6 +15,8 @@ window.getLocationName = getLocationName
 window.onClickOnMap = onClickOnMap
 window.onShowLocation = onShowLocation
 window.onDeleteLocation = onDeleteLocation
+window.onEnterLocation = onEnterLocation
+
 
 function onInit() {
     mapService.initMap()
@@ -22,12 +24,11 @@ function onInit() {
             console.log('Map is ready');
         })
         .then(mapService.clickOnMap)
-        .catch(() => console.log('Error: cannot init map'));
+        .catch(() => console.log('Error: cannot init map'));   
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
 function getPosition() {
-    console.log('Getting Pos');
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject)
     })
@@ -38,14 +39,12 @@ function onClickOnMap(){
 }
 
 function onAddMarker() {
-    console.log('Adding a marker');
     mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
 }
 
 function onGetLocs() {
     locService.getLocs()
-        .then(locs => {
-            console.log('Locations:', locs)
+    .then(locs => {
             // document.querySelector('.locs').innerText = JSON.stringify(locs)
             renderLocs(locs)
         })
@@ -83,7 +82,6 @@ function centerOnUser(){
 function onGetUserPos() {
     getPosition()
         .then(pos => {
-            console.log('User position is:', pos.coords);
             document.querySelector('.user-pos').innerText =
                 `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
         })
@@ -92,7 +90,6 @@ function onGetUserPos() {
         })
 }
 function onPanTo() {
-    console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);
 }
 
@@ -110,3 +107,27 @@ function getLocation(){
 
 }
 
+// function  {
+//     let location = document.querySelector('.search-location input').value
+//     `https://maps.googleapis.com/maps/api/geocode/json?address=${location}key=${API_KEY}`
+// }
+
+
+function onEnterLocation(){
+    const API_KEY = 'AIzaSyAGaZRWdu665a_3TBFr6SdWetGNU0Ef1Wc' //rotems api
+    let currLocation = document.querySelector('.search-location input').value  
+    let currId = mapService.getRandomId()
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${currLocation}_PIzPuM&key=${API_KEY}`)
+    .then(function(response){
+        console.log(response)
+        var currLat = response.data.results[0].geometry.location.lat
+        var currLng = response.data.results[0].geometry.location.lng
+        var loc = { id:currId, name: currLocation, lat: currLat, lng: currLng }
+        mapService.panTo(currLat, currLng)
+        locService.saveLocation(currLocation)
+        renderLocs(loc)
+    })
+    .catch(function(error){
+        console.log(error)
+    })
+}

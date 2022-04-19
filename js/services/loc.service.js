@@ -21,9 +21,7 @@ function getLocs() {
 }
 
 function saveLocation(location){
-    console.log('saving', location)
     locs.push(location)
-    console.log(locs)
     storageService.saveToStorage(STORAGE_KEY,locs)
     return location
 }

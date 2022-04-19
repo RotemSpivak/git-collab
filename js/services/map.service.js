@@ -6,7 +6,8 @@ export const mapService = {
     addMarker,
     panTo,
     clickOnMap,
-    getGCurrLocation
+    getGCurrLocation,
+    getRandomId,
 }
 
 var gMap;
@@ -18,16 +19,13 @@ function getGCurrLocation(){
 
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
-    console.log('InitMap');
     return _connectGoogleApi()
         .then(() => {
-            console.log('google available');
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
                 center: { lat, lng },
                 zoom: 15
             })
-            console.log('Map!', gMap);
         })
 }
 
@@ -44,21 +42,17 @@ function addMarker(loc) {
 function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
     gMap.panTo(laLatLng);
+    console.log('PANNING')
 }
 
 function clickOnMap(){
     gMap.addListener('click',(ev)=>{
-        console.log(ev.latLng.lat())
-        console.log(ev.latLng.lng())
         let name = appController.getLocation()
         let id = getRandomId()
-        console.log(name)
         const currLocation = {id,name:name,lat:ev.latLng.lat(),lng:ev.latLng.lng()}
         locService.saveLocation(currLocation)
     })
 }
-
-
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
@@ -79,3 +73,4 @@ function getRandomId(){
             .toString(16)
             .substring(1);
 }
+

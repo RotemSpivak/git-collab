@@ -15,7 +15,7 @@
         <div class="enter-and-my-location">
             <div class="search-location">
                 <input type="search" id="search" name="search" placeholder="Enter Location">
-                <button class="btn-submit" type="submit">Go</button>
+                <button onclick="onEnterLocation()" class="btn-submit" type="submit">Go</button>
             </div>
             <button class="my-location" onclick="onMyLocation()">My Location</button>
         </div>
@@ -53,7 +53,7 @@
     <p>You are at: <span class="user-pos"></span></p>
 
     
-
+    <script src="/js/lib/axios.js"></script>
     <script type="module" src="js/app.controller.js"></script>
 </body>
 </html>
