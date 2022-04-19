@@ -3,23 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/fonts/typography.css">
+    <link rel="stylesheet" href="css/headers.css">
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>TravelTip</title>
 </head>
 <body>
-    
-    <h1>TravelTip Starter</h1>
-    <div id="map" style="width: 100%; height: 400px;"></div>
-    <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
-    <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
-    <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
-    <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
-    <section class="moadl">
+    <header>
+        <h1 class="travelTip-logo">TravelTip</h1>
+        <div class="enter-and-my-location">
+            <div class="search-location">
+                <input type="search" id="search" name="search" placeholder="Enter Location">
+                <button class="btn-submit" type="submit">Go</button>
+            </div>
+            <button class="my-location" onclick="onMyLocation()">My Location</button>
+        </div>
+    </header>
+    <div class="second-header">
+        <h1 class="location-title">Location: Central Park, New York</h1>
+        <button class="copy-location-btn" onclick="onCopyLocation()">Copy Location</button>
+    </div>
+    <div class="weather-table-map-container">
+        <div class="weather-table-container">
+            <div class="weather-container">
+                <h3>Weather Today</h3>
+                <p class="p-title">Central Park, New York</p>
+                <p>Temperature from 6 to 8</p>
+            </div>
+            <div class="table-container">
+                <h3 class="location-table">Locations Table</h3>
+                <p>Locations: <span class="locs"></span></p>
+            </div>
+        </div>
         <form onsubmit="getLocationName(event)">
             <input class="location-name" type="text" placeholder="Please enter location name">
         </form>
-    </section>
+        <div class="map-container">
+            <div class="map" id="map" style="width: 550px; height: 400px;"></div>
+            <div class="map-btns">
+                <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
+                <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
+                <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
+                <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
+            </div>
+        </div>
+    </div>
+        
     <p>You are at: <span class="user-pos"></span></p>
-    <p>Locations: <span class="locs"></span></p>
+
     
 
     <script type="module" src="js/app.controller.js"></script>

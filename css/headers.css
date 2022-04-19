@@ -1,0 +1,67 @@
+
+
+header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.travelTip-logo{
+    margin-left: 20px;
+    font-size: 45px;
+    font-family: 'Sigmar One';
+
+}
+.enter-and-my-location {
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+}
+.search-location {
+    margin-right: 8px;
+}
+.second-header {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+
+    align-items: center;
+}
+.copy-location-btn {
+    display: flex;
+    height: 35px;
+    background-color: rgb(109, 108, 108);
+    color: rgb(231, 231, 231);
+    align-items: center;
+    font-size: larger;
+    margin-right: 40px;
+}
+.location-title{
+    width: 700px;
+    text-decoration: underline;
+}
+.my-location{
+    display: flex;
+    height: 38px;
+    padding: 8px;
+    background-color: rgb(109, 108, 108);
+    color: rgb(231, 231, 231);
+    font-size: larger;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-location {
+    display: flex;
+}
+.search-location input[type=search]{
+    height: 38px;
+    background-color: rgb(209, 209, 213);
+    padding: 8px;
+}
+
+.btn-submit{
+    background-color: rgb(109, 108, 108);
+    padding: 5px;
+    color: white;
+    font-size: larger;
+}
