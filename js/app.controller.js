@@ -25,8 +25,9 @@ function onInit() {
     let newUrl = url.search.split(':')
     console.log(newUrl)
     if(newUrl.length>1){
-        console.log('here')
-        mapService.initMap(Number(newUrl[1].substring(0,12),Number(newUrl[2])))
+        console.log(Number(newUrl[1].substring(0,10)))
+        console.log(Number(newUrl[2]))
+        mapService.initMap(Number(newUrl[1].substring(0,10)),Number(newUrl[2]))
         .then(mapService.clickOnMap)
         .then(mapService.renderMarkers)
     } else mapService.initMap()
@@ -155,12 +156,15 @@ function onEnterLocation(){
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${currLocation}_PIzPuM&key=${API_KEY}`)
     .then(function(response){
         console.log(response)
-        var currLat = response.data.results[0].geometry.location.lat
-        var currLng = response.data.results[0].geometry.location.lng
-        var loc = { id:currId, name: currLocation, lat: currLat, lng: currLng }
+        let currLat = response.data.results[0].geometry.location.lat
+        let currLng = response.data.results[0].geometry.location.lng
+        let loc = { id:currId, name: currLocation, lat: currLat, lng: currLng }
         mapService.panTo(currLat, currLng)
-        locService.saveLocation(currLocation)
-        renderLocs(loc)
+        console.log(loc)
+        locService.saveLocation(loc)
+        locService.getLocs()
+        .then(renderLocs)
+        // renderLocs()
     })
     .catch(function(error){
         console.log(error)
