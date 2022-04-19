@@ -1,19 +1,30 @@
+import {appController} from "../app.controller.js";
+import {storageService} from "./storage-service.js";
 export const locService = {
-    getLocs
+    getLocs,
+    saveLocation
 }
+const STORAGE_KEY = 'locationsDB'
 
 
-const locs = [
-    { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
-    { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
-]
-
+// const locs = [
+//     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
+//     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
+// ]
+let locs = storageService.loadFromStorage(STORAGE_KEY) || []
 function getLocs() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(locs);
-        }, 2000)
+        }, 100)
     });
 }
 
+function saveLocation(location){
+    console.log('saving', location)
+    locs.push(location)
+    console.log(locs)
+    storageService.saveToStorage(STORAGE_KEY,locs)
+    return location
+}
 

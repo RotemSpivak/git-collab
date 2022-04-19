@@ -1,12 +1,21 @@
-
+import { appController } from "../app.controller.js";
+import { locService } from "./loc.service.js";
 
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    clickOnMap,
+    getGCurrLocation
 }
 
 var gMap;
+
+
+function getGCurrLocation(){
+    return gCurrLocation
+}
+
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap');
@@ -22,6 +31,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
         })
 }
 
+
 function addMarker(loc) {
     var marker = new google.maps.Marker({
         position: loc,
@@ -36,11 +46,23 @@ function panTo(lat, lng) {
     gMap.panTo(laLatLng);
 }
 
+function clickOnMap(){
+    gMap.addListener('click',(ev)=>{
+        console.log(ev.latLng.lat())
+        console.log(ev.latLng.lng())
+        let name = appController.getLocation()
+        let id = getRandomId()
+        console.log(name)
+        const currLocation = {id,name:name,lat:ev.latLng.lat(),lng:ev.latLng.lng()}
+        locService.saveLocation(currLocation)
+    })
+}
+
 
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = ''; //TODO: Enter your API Key
+    const API_KEY = 'AIzaSyAPqMGz67tttaxNRhLaIjClAWnA_gv56kg'; //TODO: Enter your API Key
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;
@@ -50,4 +72,10 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve;
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+function getRandomId(){
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
 }
